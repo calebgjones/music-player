@@ -13,8 +13,8 @@ function MusicPlayer() {
     const currentIndex = songs.indexOf(currentSong);
     
     // Move to the next song in the array
-    const nextIndex = (currentIndex + 1) % SongList.length;
-    const nextSong = SongList[nextIndex];
+    const nextIndex = (currentIndex + 1) % songs.length;
+    const nextSong = songs[nextIndex];
     
     // Update the randomSong state with the next song
     currentSong = nextSong;
