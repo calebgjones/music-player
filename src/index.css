@@ -65,12 +65,14 @@ body {
 #songQueue {
   overflow-y: scroll;
   max-height: 150px;
+  list-style-type: none; /* TREVOR ADDED THIS I AM SO SORRY */
+  padding-left: 15px;  /* TREVOR ADDED THIS I AM SO SORRY */
 }
 
 #songQueue a{
-  text-decoration: none;
+  text-decoration: none;  /* TREVOR ADDED THIS I AM SO SORRY */
   color: black;
-  font-size: 13pt;
+  font-size: 13pt;  /* TREVOR CHANGES THIS I AM SO SORRY */
 }
 
 #songQueue a:hover {
