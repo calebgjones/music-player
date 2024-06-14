@@ -2,6 +2,7 @@ import React from 'react';
 import PlayPauseButton from './Buttons/PlayPauseButton';
 import PreviousButton from './Buttons/PreviousButton';
 import NextButton from './Buttons/NextButton';
+import ShuffleButton from './Buttons/ShuffleButton';
 
 
 function MediaInterface() {
@@ -10,6 +11,7 @@ function MediaInterface() {
             <PreviousButton />
             <PlayPauseButton />
             <NextButton />
+            <ShuffleButton />
         </div>
     );
 }
