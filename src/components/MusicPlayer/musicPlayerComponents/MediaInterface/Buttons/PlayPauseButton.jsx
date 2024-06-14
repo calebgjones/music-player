@@ -12,7 +12,7 @@ function PlayPauseButton({ isPlaying }) {
 
   return (
     <button onClick={() => { handleClick() }} >
-      <i class={`fa-solid ${icon}`}></i>
+      <i className={`fa-solid ${icon}`}></i>
     </button>
   )
 }

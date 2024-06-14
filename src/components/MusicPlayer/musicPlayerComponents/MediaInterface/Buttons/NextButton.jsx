@@ -4,7 +4,7 @@ function NextButton({ onClick }) {
 
   return (
     <button onClick={ onClick }>
-      <i class="fa-solid fa-forward"></i>
+      <i className="fa-solid fa-forward"></i>
     </button>
   )
   

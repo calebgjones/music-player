@@ -9,7 +9,7 @@ function MediaInterface({ previousButtonClick, playPauseButtonClick, nextButtonC
     return (
         <div>
             <PreviousButton onClick={() => {previousButtonClick}}/>
-            <PlayPauseButton onClick={() => {playPauseButtonClick}}/>
+            <PlayPauseButton onClick={ playPauseButtonClick }/>
             <NextButton onClick={ nextButtonClick }/>
             <ShuffleButton onClick={() => {shuffleButtonClick}}/>
         </div>
