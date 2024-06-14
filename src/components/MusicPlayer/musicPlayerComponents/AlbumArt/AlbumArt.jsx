@@ -1,7 +1,11 @@
 
 function AlbumArt() {
+  const randomWidth = Math.floor(Math.random() * (300 - 150 + 1) + 300);
+  const randomHeight = Math.floor(Math.random() * (300 - 150 + 1) + 300);
+  const randomAlbumArt = `https://via.placeholder.com/${randomWidth}x${randomHeight}`;
+
   return (
-    <img src="https://via.placeholder.com/150" alt="Album cover" />
+    <img className="albumArt" src={`${randomAlbumArt}`} alt="Album cover" />
   );
 }
 
