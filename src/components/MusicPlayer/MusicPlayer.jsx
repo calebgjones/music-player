@@ -23,13 +23,20 @@ function MusicPlayer() {
   const [currentSong, setCurrentSong] = useState('Something - Remastered 2009 - The Beatles');
   const [queuedSongs, setQueuedSongs] = useState(songs);
 
+  const setNowPlaying = (song) => {
+    if (song === currentSong) {
+      return;
+    } else {
+      setCurrentSong(song);
+    }
+  }
+
 
   const handleNextButtonClick = () => {
-    // Find the index of the current song
-    const currentIndex = queuedSongs.indexOf(currentSong);
+    const indexOfCurrentSong = queuedSongs.indexOf(currentSong);    // Find the index of the current song
     
     // Move to the next song in the array
-    const nextIndex = (currentIndex + 1) % queuedSongs.length;
+    const nextIndex = (indexOfCurrentSong + 1) % queuedSongs.length;
     const nextSong = queuedSongs[nextIndex];
     
     // Update the currentSong state with the next song
@@ -68,7 +75,7 @@ function MusicPlayer() {
             nextButtonClick={ handleNextButtonClick } 
             shuffleButtonClick={ handleShuffleButtonClick }
         />
-        <SongQueue queuedSongs={queuedSongs} setQueuedSongs={setQueuedSongs}/>
+        <SongQueue queuedSongs={queuedSongs} setQueuedSongs={setQueuedSongs} setNowPlaying={setNowPlaying}/>
     </div>
   );
 }

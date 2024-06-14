@@ -70,11 +70,11 @@ body {
 #songQueue a{
   text-decoration: none;
   color: black;
-  font-size: 15pt;
+  font-size: 13pt;
 }
 
 #songQueue a:hover {
-  display: block;
+  /* display: block; */
   color: red;
 }
 
