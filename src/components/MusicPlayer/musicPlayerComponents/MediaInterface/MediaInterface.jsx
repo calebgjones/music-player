@@ -1,11 +1,15 @@
 import React from 'react';
-import PauseButton from './Buttons/PauseButton';
+import PlayPauseButton from './Buttons/PlayPauseButton';
+import PreviousButton from './Buttons/PreviousButton';
+import NextButton from './Buttons/NextButton';
 
 
 function MediaInterface() {
     return (
         <div>
-            <PauseButton />
+            <PreviousButton />
+            <PlayPauseButton />
+            <NextButton />
         </div>
     );
 }
