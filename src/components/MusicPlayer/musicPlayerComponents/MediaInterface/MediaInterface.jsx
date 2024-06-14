@@ -5,15 +5,15 @@ import NextButton from './Buttons/NextButton';
 import ShuffleButton from './Buttons/ShuffleButton';
 
 
-function MediaInterface() {
+function MediaInterface({ previousButtonClick, playPauseButtonClick, nextButtonClick, shuffleButtonClick }) {
     return (
         <div>
-            <PreviousButton />
-            <PlayPauseButton />
-            <NextButton />
-            <ShuffleButton />
+            <PreviousButton onClick={() => {previousButtonClick}}/>
+            <PlayPauseButton onClick={() => {playPauseButtonClick}}/>
+            <NextButton onClick={ nextButtonClick }/>
+            <ShuffleButton onClick={() => {shuffleButtonClick}}/>
         </div>
     );
-}
+};
 
 export default MediaInterface;

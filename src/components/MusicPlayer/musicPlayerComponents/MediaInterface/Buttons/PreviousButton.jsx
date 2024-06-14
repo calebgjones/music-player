@@ -3,7 +3,7 @@
 function PreviousButton() {
   return (
     <button>
-      <i class="fa-solid fa-backward"></i>
+      <i className="fa-solid fa-backward"></i>
     </button>
   )
 }
