@@ -6,66 +6,84 @@ import SongSearch from './musicPlayerComponents/SongSearch/SongSearch.jsx';
 
 import songs from './songs.js';
 
-function MusicPlayer() {
-  
+function MusicPlayer({ createNotification }) {
+
   const [currentSong, setCurrentSong] = useState(songs[0]);
   const [queuedSongs, setQueuedSongs] = useState(songs);
-  const [songHistory, setSongHistory] = useState([songs[0]]);
+  const [songHistory, setSongHistory] = useState([]);
   const indexOfCurrentSong = queuedSongs.indexOf(currentSong);    // Find the index of the current song
 
-  const setNowPlaying = (song) => {
-    setSongHistory([...songHistory, currentSong]);
-    setCurrentSong(song);
-    console.log(songHistory)
+  const emptySong = {
+    songId: '',
+    title: 'No Song Playing',
+    artist: '',
+    album: '',
+    genre: ''
   };
 
-  const handleNextButtonClick = () => {
+  const setNowPlaying = (song) => {
+    if (song === undefined) {
+      return;
+    } else {
+    setSongHistory([...songHistory, currentSong]);
+    queuedSongs.slice(indexOfCurrentSong, 1);
+    setCurrentSong(song);
+    createNotification(`Now playing: ${song.title}`, 'info');
+    }
+  };
+  
+  const handleNextButtonClick = async () => {
+    if (queuedSongs[0] === undefined) {
+      setCurrentSong(emptySong);
+      console.log('End of queue');
+      return;
+    }
+    setNowPlaying(emptySong);
     const updatedQueue = queuedSongs.slice(1);    // Remove the first song from the queue
     setNowPlaying(updatedQueue[0]);   // Update the currentSong state with the next song
-
+  
     setQueuedSongs(updatedQueue); // Update the queuedSongs state with the updated queue
-
-
-    console.log('Now playing:', updatedQueue[0].title);
-  }
+  
+    console.log('Song history After Next Button Click:', songHistory[0]);
+  };
 
   const handlePreviousButtonClick = () => {
-    // Move to the next song in the array
-    const prevIndex = (indexOfCurrentSong - 1) % queuedSongs.length;
-    const prevSong = queuedSongs[prevIndex];
+    const prevSong = songHistory[songHistory.length - 1];
+    const prevSongExists = prevSong === undefined ? false : true;
 
-    if (queuedSongs.indexOf(prevSong) < 0) {
-      console.log('No previous song in queue');
+    if (!prevSongExists) {
+      console.log('No previous song in history');
     } else {
-    // Update the currentSong state with the previous song
-    setCurrentSong(prevSong);
-
-    // Update the currently playing song
-    console.log('Now playing:', prevSong.title);
-    console.log('Array index #:' + queuedSongs.indexOf(prevSong));
+      setCurrentSong(prevSong);
+      setQueuedSongs([prevSong, ...queuedSongs]);
+      setSongHistory(songHistory.slice(0, -1));
     }
+
+    console.log('Song history After Previous Button Click:', songHistory);
+
   }
 
   const handlePlayPauseButtonClick = () => {
     console.log('Play/Pause button clicked');
   }
-  
- const handleShuffleButtonClick = () => {
-  const shuffleSongs = () => {
-    const shuffledSongs = [...queuedSongs];
-    for (let i = shuffledSongs.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [shuffledSongs[i], shuffledSongs[j]] = [shuffledSongs[j], shuffledSongs[i]];
+
+  const handleShuffleButtonClick = () => {
+    const shuffleSongs = () => {
+      const shuffledSongs = [...queuedSongs];
+      for (let i = shuffledSongs.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffledSongs[i], shuffledSongs[j]] = [shuffledSongs[j], shuffledSongs[i]];
+      }
+      setNowPlaying(shuffledSongs[0]);
+      setQueuedSongs(shuffledSongs);
     }
-    setQueuedSongs(shuffledSongs);
+
+    shuffleSongs();
   }
 
-  shuffleSongs();
-  }
 
-  
-    return (
-      <>
+  return (
+    <>
 
       <div id="musicPlayerContainer">
 
@@ -86,9 +104,9 @@ function MusicPlayer() {
             <SongQueue queuedSongs={queuedSongs} setQueuedSongs={setQueuedSongs} setNowPlaying={setNowPlaying} />
           </div>
         </div>
-        
+
         <div id='searchBox'>
-          <SongSearch />
+          <SongSearch data/>
         </div>
 
 

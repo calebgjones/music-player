@@ -1,12 +1,16 @@
 import { useState } from 'react'
 import MusicPlayer from './components/MusicPlayer/MusicPlayer'
+import Notification, { notify } from './components/Notifications.jsx';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const createNotification = (message, type) => {
+    notify(message, type);
+  }
 
   return (
     <>
-      <MusicPlayer />
+      <Notification />
+      <MusicPlayer createNotification={ createNotification } />
     </>
   )
 }

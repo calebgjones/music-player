@@ -29,4 +29,8 @@ function SongSearch({ addSongToQueue, setNowPlaying }) {
   );
 }
 
+function addSongToQueue(song) {
+  console.log('Song added to queue:', song);
+}
+
 export default SongSearch;
