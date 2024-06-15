@@ -8,9 +8,9 @@ function SongSearch({ data, addSongToQueue }) {
 
           {song.title}
           <button onClick={() => { onAddSong(song) }}>
-            <icon className="fa-solid fa-plus" ></icon>
+            <i className="fa-solid fa-plus" ></i>
           </button>
-          
+
         </a>
       </li>
     );
