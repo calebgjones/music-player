@@ -1,6 +1,7 @@
 import React from 'react';
 import setNowPlaying from '../MediaInterface/MediaInterface';
 
+// Search for any term within the songs data
 function SongSearch({ data, addSongToQueue }) {
   const [searchTerm, setSearchTerm] = React.useState('');
   const filteredSongs = data.filter((song) => {
