@@ -1,30 +1,30 @@
 
-function SongSearch({ addSongToQueue, setNowPlaying }) {
+function SongSearch({ data, addSongToQueue }) {
+
+  const songList = data.map((song) => {
+    return (
+      <li>
+        <a onClick={() => { onAddSong(song) }}>
+
+          {song.title}
+          <button onClick={() => { onAddSong(song) }}>
+            <icon className="fa-solid fa-plus" ></icon>
+          </button>
+          
+        </a>
+      </li>
+    );
+  });
 
   const onAddSong = (song) => {
     addSongToQueue(song);
   }
 
-  const onQueuedSongClick = (song) => {
-    setNowPlaying(song);
-  }
-
-
   return (
     <div id='SongSearchContainer'>
       <input type='text' placeholder='Search for a song' />
       <button>Search</button>
-      <ul id='songSearchResults'>
-        <li>
-          <a onClick={() => { onAddSong('Song 1') }}>Song 1</a>
-        </li>
-        <li>
-          <a onClick={() => { onAddSong('Song 2') }}>Song 2</a>
-        </li>
-        <li>
-          <a onClick={() => { onAddSong('Song 3') }}>Song 3</a>
-        </li>
-      </ul>
+      {songList}
     </div>
   );
 }

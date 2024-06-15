@@ -31,6 +31,11 @@ function MusicPlayer({ createNotification }) {
     createNotification(`Now playing: ${song.title}`, 'info');
     }
   };
+
+  const addSongToQueue = (song) => {
+    setQueuedSongs([...queuedSongs, song]);
+    createNotification(`Song added to queue: ${song.title}`, 'success');
+  }
   
   const handleNextButtonClick = async () => {
     if (queuedSongs[0] === undefined) {
@@ -84,7 +89,7 @@ function MusicPlayer({ createNotification }) {
 
   return (
     <>
-
+      <title>{`Playing: ${currentSong.title}`}</title>
       <div id="musicPlayerContainer">
 
         <div className='musicPlayerGrid'>
@@ -93,6 +98,7 @@ function MusicPlayer({ createNotification }) {
             <AlbumArt />
             <p>Now playing <br /> <b>{currentSong.title}</b></p>
             <p>Artist: {currentSong.artist}</p>
+            <progress value={0.8} />
             <MediaInterface
               previousButtonClick={handlePreviousButtonClick}
               playPauseButtonClick={handlePlayPauseButtonClick}
@@ -106,7 +112,7 @@ function MusicPlayer({ createNotification }) {
         </div>
 
         <div id='searchBox'>
-          <SongSearch data/>
+          <SongSearch data={songs} addSongToQueue={addSongToQueue}/>
         </div>
 
 
