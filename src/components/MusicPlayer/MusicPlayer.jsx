@@ -62,6 +62,7 @@ function MusicPlayer({ createNotification }) {
       setCurrentSong(prevSong);
       setQueuedSongs([prevSong, ...queuedSongs]);
       setSongHistory(songHistory.slice(0, -1));
+      createNotification(`Now playing: ${prevSong.title}`, 'info');
     }
 
     console.log('Song history After Previous Button Click:', songHistory);
