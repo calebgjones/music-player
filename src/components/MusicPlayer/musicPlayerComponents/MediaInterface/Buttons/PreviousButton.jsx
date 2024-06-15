@@ -1,8 +1,8 @@
 
 
-function PreviousButton() {
+function PreviousButton({ onClick }) {
   return (
-    <button>
+    <button onClick={onClick}>
       <i className="fa-solid fa-backward"></i>
     </button>
   )

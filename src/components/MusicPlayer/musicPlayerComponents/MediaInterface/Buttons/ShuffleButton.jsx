@@ -1,8 +1,8 @@
 
 
-function ShuffleButton(props) {
+function ShuffleButton({ onClick }) {
     return (
-        <button className="shuffle-button" onClick={props.onClick}>
+        <button className="shuffle-button" onClick={ onClick }>
             <i className="fa-solid fa-shuffle"></i>    
         </button>
     );

@@ -8,10 +8,10 @@ import ShuffleButton from './Buttons/ShuffleButton';
 function MediaInterface({ previousButtonClick, playPauseButtonClick, nextButtonClick, shuffleButtonClick }) {
     return (
         <div>
-            <PreviousButton onClick={() => {previousButtonClick}}/>
+            <PreviousButton onClick={ previousButtonClick }/>
             <PlayPauseButton onClick={ playPauseButtonClick }/>
             <NextButton onClick={ nextButtonClick }/>
-            <ShuffleButton onClick={() => {shuffleButtonClick}}/>
+            <ShuffleButton onClick={ shuffleButtonClick }/>
         </div>
     );
 };
