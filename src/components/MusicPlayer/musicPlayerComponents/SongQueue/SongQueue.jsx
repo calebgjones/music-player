@@ -17,8 +17,8 @@ function SongQueue({ queuedSongs, setQueuedSongs, setNowPlaying }) {
       <h2>Song Queue</h2>
       <ul id='songQueue'>
         {queuedSongs.map((song) => (
-          <li key={song}>
-            <a onClick={( ) => { onQueuedSongClick(song) }} key={song}>{discIcon}{song}</a>
+          <li key={song.songId}>
+            <a onClick={( ) => { onQueuedSongClick(song) }} >{discIcon}{song.title}</a>
             <button onClick={() => { onRemove(song) }} ><i class="fa-solid fa-trash"></i></button>
           </li>
         ))}

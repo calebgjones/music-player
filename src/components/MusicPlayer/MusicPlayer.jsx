@@ -2,25 +2,13 @@ import { useState} from 'react';
 import MediaInterface from './musicPlayerComponents/MediaInterface/MediaInterface.jsx';
 import SongQueue from './musicPlayerComponents/SongQueue/SongQueue.jsx';
 import AlbumArt from './musicPlayerComponents/AlbumArt/AlbumArt.jsx';
+import SongSearch from './musicPlayerComponents/SongSearch/SongSearch.jsx';
+
+import songs from './songs.js';
 
 function MusicPlayer() {
-  const songs = [
-    'Something - Remastered 2009 - The Beatles',
-    'Hey Jude - Remastered 2015 - The Beatles',
-    'Let It Be - Remastered 2009 - The Beatles',
-    'Help! - Remastered 2009 - The Beatles',
-    'Yesterday - Remastered 2009 - The Beatles',
-    'Come Together - Remastered 2009 - The Beatles',
-    'Twist And Shout - Remastered 2009 - The Beatles',
-    'I Want To Hold Your Hand - Remastered 2015 - The Beatles',
-    'A Hard Day\'s Night - Remastered 2009 - The Beatles',
-    'Can\'t Buy Me Love - Remastered 2009 - The Beatles',
-    'Love Me Do - Remastered 2009 - The Beatles',
-    'Penny Lane - Remastered 2009 - The Beatles',
-    'Yellow Submarine - Remastered 2009 - The Beatles'
-  ]
-  
-  const [currentSong, setCurrentSong] = useState('Something - Remastered 2009 - The Beatles');
+
+  const [currentSong, setCurrentSong] = useState(songs[0]);
   const [queuedSongs, setQueuedSongs] = useState(songs);
 
   const setNowPlaying = (song) => {
@@ -68,7 +56,8 @@ function MusicPlayer() {
     <div>
       <h1>Music Player</h1>
         <AlbumArt />
-        <p>Now playing <br /> <b>{currentSong}</b></p>
+        <p>Now playing <br /> <b>{currentSong.title}</b></p>
+        <p>Artist: {currentSong.artist}</p>
         <MediaInterface 
             previousButtonClick={ handlePreviousButtonClick } 
             playPauseButtonClick={ handlePlayPauseButtonClick } 
@@ -76,6 +65,7 @@ function MusicPlayer() {
             shuffleButtonClick={ handleShuffleButtonClick }
         />
         <SongQueue queuedSongs={queuedSongs} setQueuedSongs={setQueuedSongs} setNowPlaying={setNowPlaying}/>
+        <SongSearch addSongToQueue={setQueuedSongs} setNowPlaying={setNowPlaying}/>
     </div>
   );
 }
