@@ -76,6 +76,8 @@ body {
   align-items: center;
   padding: 10px;
   margin: 10px;
+  max-height: 20%;
+  overflow-y: scroll;
 }
 
 /* individual components (?) section begin */
