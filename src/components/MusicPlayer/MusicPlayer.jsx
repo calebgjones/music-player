@@ -56,6 +56,7 @@ function MusicPlayer() {
     <>
 
       <div id="musicPlayerContainer">
+
         <div className='musicPlayerGrid'>
           <div id="musicPlayerBox">
             <h1>Music Player</h1>
@@ -68,14 +69,13 @@ function MusicPlayer() {
               nextButtonClick={handleNextButtonClick}
               shuffleButtonClick={handleShuffleButtonClick}
             />
-
           </div>
           <div id="musicPlayerBox">
             <SongQueue queuedSongs={queuedSongs} setQueuedSongs={setQueuedSongs} setNowPlaying={setNowPlaying} />
-
           </div>
         </div>
-        <div id='musicPlayerBox'>
+        
+        <div id='searchBox'>
           <SongSearch />
         </div>
 
