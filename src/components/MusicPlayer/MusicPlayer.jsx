@@ -10,27 +10,23 @@ function MusicPlayer() {
   
   const [currentSong, setCurrentSong] = useState(songs[0]);
   const [queuedSongs, setQueuedSongs] = useState(songs);
+  const [songHistory, setSongHistory] = useState([songs[0]]);
   const indexOfCurrentSong = queuedSongs.indexOf(currentSong);    // Find the index of the current song
 
   const setNowPlaying = (song) => {
-    if (song === currentSong) {
-      return;
-    } else {
-      setCurrentSong(song);
-    }
-  }
+    setSongHistory([...songHistory, currentSong]);
+    setCurrentSong(song);
+    console.log(songHistory)
+  };
 
   const handleNextButtonClick = () => {
-    
-    // Move to the next song in the array
-    const nextIndex = (indexOfCurrentSong + 1) % queuedSongs.length;
-    const nextSong = queuedSongs[nextIndex];
-    
-    // Update the currentSong state with the next song
-    setCurrentSong(nextSong);
+    const updatedQueue = queuedSongs.slice(1);    // Remove the first song from the queue
+    setNowPlaying(updatedQueue[0]);   // Update the currentSong state with the next song
 
-    // Update the currently playing song
-    console.log('Now playing:', nextSong);
+    setQueuedSongs(updatedQueue); // Update the queuedSongs state with the updated queue
+
+
+    console.log('Now playing:', updatedQueue[0].title);
   }
 
   const handlePreviousButtonClick = () => {
@@ -55,16 +51,16 @@ function MusicPlayer() {
   }
   
  const handleShuffleButtonClick = () => {
-  const currentSongValue = currentSong;
-
-  var randSong = songs[Math.floor(Math.random() * songs.length)];
-
-    if (currentSongValue === randSong) {
-      console.log('Song is already playing');
-    } else {
-      setCurrentSong(randSong);
-      console.log('Now playing:', randSong);
+  const shuffleSongs = () => {
+    const shuffledSongs = [...queuedSongs];
+    for (let i = shuffledSongs.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffledSongs[i], shuffledSongs[j]] = [shuffledSongs[j], shuffledSongs[i]];
     }
+    setQueuedSongs(shuffledSongs);
+  }
+
+  shuffleSongs();
   }
 
   
