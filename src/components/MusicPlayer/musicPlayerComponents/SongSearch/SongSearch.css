@@ -1,0 +1,33 @@
+@keyframes fontColorTransition {
+    0% { color: rgb(255, 120, 0); }
+    25% { color: rgb(0, 120, 0); }
+    50% { color: rgb(0, 120, 255); }
+    75% { color: rgb(255, 120, 255); }
+    100% { color: rgb(255, 120, 0); }
+  }  
+
+#songSearch {
+    position: relative;
+    border-radius: 5px;
+    border: 1.2px solid black;
+    margin: .5em 0 .5em 0;
+    text-align: center;
+}
+
+#songListItems a{
+    max-height: 10%;
+    color: black;
+    text-decoration: none;
+    overflow-y: scroll;
+}
+
+#songListItems a:hover{
+    animation: fontColorTransition 3s infinite;
+}
+
+#songListItems-addItem {
+    display: flex;
+    float: right;
+    padding: 0;
+    margin: 0;
+}

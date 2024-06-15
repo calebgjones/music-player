@@ -76,6 +76,8 @@ body {
   align-items: center;
   padding: 10px;
   margin: 10px;
+  max-height: 20%;
+  overflow-y: scroll;
 }
 
 /* individual components (?) section begin */
@@ -102,7 +104,7 @@ body {
 
 #songQueue a:hover {
   /* display: block; */
-  color: red;
+  animation: fontColorTransition 3s infinite;
 }
 
 #songSearch {
