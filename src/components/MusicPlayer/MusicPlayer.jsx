@@ -22,7 +22,7 @@ function MusicPlayer({ createNotification }) {
   };
 
   const setNowPlaying = (song) => {
-    if (song === undefined) {
+    if (song === undefined || song.title === 'No Song Playing') {
       return;
     } else {
     setSongHistory([...songHistory, currentSong]);

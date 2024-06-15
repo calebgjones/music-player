@@ -104,7 +104,7 @@ body {
 
 #songQueue a:hover {
   /* display: block; */
-  color: red;
+  animation: fontColorTransition 3s infinite;
 }
 
 #songSearch {

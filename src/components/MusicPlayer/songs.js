@@ -96,7 +96,56 @@ const songs = [
         artist: 'Carly Rae Jepsen',
         album: 'Call Me Maybe',
         genre: 'Pop',
-      }
+      },
+      {
+        songId: '15ae8f7b1-8f6e-4f1f-8f1d-6f7b1f1f8d1e',
+        title: 'I Really Like You',
+        artist: 'Carly Rae Jepsen',
+        album: 'I Really Like You',
+        genre: 'Pop',
+      },
+      {
+        songId: '16ae8f7b1-8f6e-4f1f-8f1d-6f7b1f1f8d1e',
+        title: 'Party For One',
+        artist: 'Carly Rae Jepsen',
+        album: 'Party For One',
+        genre: 'Pop',
+      },
+      {
+        songId: '17ae8f7b1-8f6e-4f1f-8f1d-6f7b1f1f8d1e',
+        title: 'C.R.E.A.M.',
+        artist: 'Wu-Tang Clan',
+        album: 'Enter the Wu-Tang (36 Chambers)',
+        genre: 'Hip-Hop',
+      },
+      {
+        songId: '18ae8f7b1-8f6e-4f1f-8f1d-6f7b1f1f8d1e',
+        title: 'Protect Ya Neck',
+        artist: 'Wu-Tang Clan',
+        album: 'Enter the Wu-Tang (36 Chambers)',
+        genre: 'Hip-Hop',
+      },
+      {
+        songId: '19ae8f7b1-8f6e-4f1f-8f1d-6f7b1f1f8d1e',
+        title: 'Method Man',
+        artist: 'Wu-Tang Clan',
+        album: 'Enter the Wu-Tang (36 Chambers)',
+        genre: 'Hip-Hop',
+      },
+      {
+        songId: '20ae8f7b1-8f6e-4f1f-8f1d-6f7b1f1f8d1e',
+        title: 'Triumph',
+        artist: 'Wu-Tang Clan',
+        album: 'Wu-Tang Forever',
+        genre: 'Hip-Hop',
+      },
+      {
+        songId: '21ae8f7b1-8f6e-4f1f-8f1d-6f7b1f1f8d1e',
+        title: 'Gravel Pit',
+        artist: 'Wu-Tang Clan',
+        album: 'The W',
+        genre: 'Hip-Hop',
+      },
   ];
 
   export default songs;
