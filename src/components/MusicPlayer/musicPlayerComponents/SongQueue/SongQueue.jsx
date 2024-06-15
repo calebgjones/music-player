@@ -10,7 +10,7 @@ function SongQueue({ queuedSongs, setQueuedSongs, setNowPlaying }) {
     setNowPlaying(song);
   }
 
-  const discIcon = <i class="fa-solid fa-compact-disc"></i>;
+  const discIcon = <i className="fa-solid fa-compact-disc"></i>;
 
   return (
     <div id='songQueueContainer'>
@@ -19,7 +19,7 @@ function SongQueue({ queuedSongs, setQueuedSongs, setNowPlaying }) {
         {queuedSongs.map((song) => (
           <li key={song.songId}>
             <a onClick={( ) => { onQueuedSongClick(song) }} >{discIcon}{song.title}</a>
-            <button onClick={() => { onRemove(song) }} ><i class="fa-solid fa-trash"></i></button>
+            <button onClick={() => { onRemove(song) }} ><i className="fa-solid fa-trash"></i></button>
           </li>
         ))}
       </ul>
