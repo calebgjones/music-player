@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react';
 
 
-function PlayPauseButton({ isPlaying }) {
+function PlayPauseButton({ onClick, isPlaying  }) {
 
   const handleClick = () => {
     onClick();
     console.log('Play/Pause Button Clicked');
   }
 
-  const icon = playing ? "fa-pause" : "fa-play";
+
 
   return (
     <button onClick={() => { handleClick() }} >

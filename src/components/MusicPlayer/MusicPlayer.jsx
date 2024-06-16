@@ -13,6 +13,8 @@ function MusicPlayer({ createNotification }) {
   const [songHistory, setSongHistory] = useState([]);
   const indexOfCurrentSong = queuedSongs.indexOf(currentSong);    // Find the index of the current song
 
+  const [isPlaying, setIsPlaying] = useState(false);
+
   const emptySong = {
     songId: '',
     title: '',
