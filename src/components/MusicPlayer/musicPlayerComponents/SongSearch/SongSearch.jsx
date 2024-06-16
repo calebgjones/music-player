@@ -39,7 +39,7 @@ function SongSearch({ data, addSongToQueue }) {
   }
 
   return (
-    <div id='SongSearchContainer'>
+    <div id='SongSearchList'>
       <input id='songSearch' type='text' placeholder='Search for a song / genre / album' value={searchTerm} onChange={handleSearchChange} />
       {songList}
     </div>
