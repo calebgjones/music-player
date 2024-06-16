@@ -109,6 +109,7 @@ function MusicPlayer({ createNotification }) {
   const audioDuration = () => {
     const audioElement = document.getElementById('audioElement');
     const duration = audioElement.duration;
+    console.log(duration)
     return duration;
   }
 
@@ -142,7 +143,8 @@ function MusicPlayer({ createNotification }) {
             <audio id="audioElement" controls src={'https://music-player-bucket-test.s3.us-west-1.amazonaws.com/1f70779e-96c0-4473-aa58-a77b1ef7b920?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAVC2IB2O2QHLDIUGL%2F20240725%2Fus-west-1%2Fs3%2Faws4_request&X-Amz-Date=20240725T042051Z&X-Amz-Expires=3600&X-Amz-Signature=aaab999d5e448d9cc091105d27a0d1046daebc3d5e1ab7be75fb9bf1ff178156&X-Amz-SignedHeaders=host&x-id=GetObject'} />
             <MediaInterface
               previousButtonClick={handlePreviousButtonClick}
-              playPauseButtonClick={handlePlayPauseButtonClick}
+              playPauseButtonClick={ handlePlayPauseButtonClick }
+              isPlaying={isPlaying}
               nextButtonClick={handleNextButtonClick}
               shuffleButtonClick={handleShuffleButtonClick}
             />
