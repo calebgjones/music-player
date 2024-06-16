@@ -1,18 +1,18 @@
 import { useState, useEffect } from 'react';
 
 
-function PlayPauseButton({ isPlaying }) {
-  const [playing, setPlaying] = useState(false);
+function PlayPauseButton({ onClick, isPlaying  }) {
 
   const handleClick = () => {
-    setPlaying(!playing);
+    onClick();
+    console.log('Play/Pause Button Clicked');
   }
 
-  const icon = playing ? "fa-pause" : "fa-play";
+
 
   return (
     <button onClick={() => { handleClick() }} >
-      <i className={`fa-solid ${icon}`}></i>
+      <i className={`fa-solid ${isPlaying ? "fa-pause" : "fa-play"}`}></i>
     </button>
   )
 }
