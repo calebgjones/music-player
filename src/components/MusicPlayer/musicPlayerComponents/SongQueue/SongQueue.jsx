@@ -5,8 +5,9 @@ function SongQueue({ queuedSongs, setQueuedSongs, setNowPlaying }) {
     const newQueue = queuedSongs.filter((queuedSong) => queuedSong !== song);
     setQueuedSongs(newQueue);
   }
-
   const onQueuedSongClick = (song) => {
+    const newQueue = queuedSongs.slice(queuedSongs.indexOf(song));
+    setQueuedSongs(newQueue);
     setNowPlaying(song);
   }
 
@@ -19,7 +20,7 @@ function SongQueue({ queuedSongs, setQueuedSongs, setNowPlaying }) {
         {queuedSongs.map((song) => (
           <li key={song.index}>
             <a onClick={( ) => { onQueuedSongClick(song) }} >{discIcon} {song.title}</a>
-            <button onClick={() => { onRemove(song) }} ><i className="fa-solid fa-trash"></i></button>
+            <button id="songQueue-removeSong" onClick={() => { onRemove(song) }} ><i className="fa-solid fa-trash"></i></button>
           </li>
         ))}
       </ul>

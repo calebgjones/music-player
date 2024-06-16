@@ -15,7 +15,7 @@ function MusicPlayer({ createNotification }) {
 
   const emptySong = {
     songId: '',
-    title: 'No Song Playing',
+    title: '',
     artist: '',
     album: '',
     genre: ''
@@ -33,8 +33,13 @@ function MusicPlayer({ createNotification }) {
   };
 
   const addSongToQueue = (song) => {
+    if (queuedSongs.includes(song)) {
+      createNotification(`Song already in queue: ${song.title}`, 'error');
+      return;
+    } else {
     setQueuedSongs([...queuedSongs, song]);
     createNotification(`Song added to queue: ${song.title}`, 'success');
+    }
   }
   
   const handleNextButtonClick = async () => {
@@ -43,7 +48,6 @@ function MusicPlayer({ createNotification }) {
       console.log('End of queue');
       return;
     }
-    setNowPlaying(emptySong);
     const updatedQueue = queuedSongs.slice(1);    // Remove the first song from the queue
     setNowPlaying(updatedQueue[0]);   // Update the currentSong state with the next song
   
@@ -128,17 +132,21 @@ function MusicPlayer({ createNotification }) {
               shuffleButtonClick={handleShuffleButtonClick}
             />
           </div>
-          <div id="musicPlayerBox">
+          <div id="songQueueBox">
             <SongQueue queuedSongs={queuedSongs} setQueuedSongs={setQueuedSongs} setNowPlaying={setNowPlaying} />
           </div>
         </div>
-
-        <div id='searchBox'>
-          <SongSearch data={songs} addSongToQueue={addSongToQueue}/>
+        </div>
+        <div id='searchBoxContainer'>
+          <div id='searchBox'>
+            <ul>
+            <SongSearch data={songs} addSongToQueue={addSongToQueue}/>
+            </ul>
+          </div>
         </div>
 
 
-      </div>
+
     </>
   );
 }
