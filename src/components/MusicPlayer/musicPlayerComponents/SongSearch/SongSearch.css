@@ -13,6 +13,13 @@
     text-align: center;
 }
 
+#songListItems {
+    list-style-type: none;
+    border: 1px black solid;
+    border-radius: 2px;
+    margin: 1px 0 1px 0;
+}
+
 #songListItems a{
     max-height: 10%;
     color: black;

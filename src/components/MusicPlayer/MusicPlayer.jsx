@@ -23,16 +23,6 @@ function MusicPlayer({ createNotification }) {
     genre: ''
   };
 
-  const setNowPlaying = (song) => {
-    if (song === undefined || song.title === 'No Song Playing') {
-      return;
-    } else {
-    setSongHistory([...songHistory, currentSong]);
-    queuedSongs.slice(indexOfCurrentSong, 1);
-    setCurrentSong(song);
-    createNotification(`Now playing: ${song.title}`, 'info');
-    }
-  };
 
   const addSongToQueue = (song) => {
     if (queuedSongs.includes(song)) {
@@ -45,8 +35,9 @@ function MusicPlayer({ createNotification }) {
   }
   
   const handleNextButtonClick = async () => {
-    if (queuedSongs[0] === undefined) {
+    if (queuedSongs[1] === undefined || queuedSongs[1].title === 'No Song Playing') {
       setCurrentSong(emptySong);
+      queuedSongs.pop(0);
       console.log('End of queue');
       return;
     }
@@ -55,12 +46,12 @@ function MusicPlayer({ createNotification }) {
   
     setQueuedSongs(updatedQueue); // Update the queuedSongs state with the updated queue
   
-    console.log('Song history After Next Button Click:', songHistory[0]);
+    console.log('Song history After Next Button Click:', queuedSongs[1]);
   };
 
   const handlePreviousButtonClick = () => {
     const prevSong = songHistory[songHistory.length - 1];
-    const prevSongExists = prevSong === undefined ? false : true;
+    const prevSongExists = prevSong === undefined || queuedSongs.title === 'No Song Playing' ? false : true;
 
     if (!prevSongExists) {
       console.log('No previous song in history');
@@ -74,6 +65,18 @@ function MusicPlayer({ createNotification }) {
     console.log('Song history After Previous Button Click:', songHistory);
 
   }
+
+  const setNowPlaying = (song) => {
+    if (song === undefined || song.title === 'No Song Playing') {
+      console.log('wtf');
+      return;
+    } else {
+    setSongHistory([...songHistory, currentSong]);
+    queuedSongs.slice(indexOfCurrentSong, 0);
+    setCurrentSong(song);
+    createNotification(`Now playing: ${song.title}`, 'info');
+    }
+  };
 
   const handlePlayPauseButtonClick = () => {
     const audioElement = document.getElementById('audioElement');
@@ -150,9 +153,7 @@ function MusicPlayer({ createNotification }) {
         </div>
         <div id='searchBoxContainer'>
           <div id='searchBox'>
-            <ul>
             <SongSearch data={songs} addSongToQueue={addSongToQueue}/>
-            </ul>
           </div>
         </div>
 

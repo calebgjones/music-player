@@ -49,8 +49,7 @@ body {
 }
 
 #musicPlayerContainer {
-  max-width: 50%;
-  width: 50%;
+  max-width: 70%;
   max-height: 70vh;
 }
 
@@ -69,7 +68,6 @@ body {
   margin: 10px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
 }
 
 #searchBoxContainer {
@@ -141,7 +139,7 @@ body {
 
 #songSearch {
   background-color: rgba(255, 165, 87, 0.808);
-  width: 50%;
+  width: 80%;
   height: 60%;
   max-width: 600px;
   max-height: 600px;
