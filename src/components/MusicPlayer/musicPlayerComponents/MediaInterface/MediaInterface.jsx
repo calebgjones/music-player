@@ -9,7 +9,7 @@ function MediaInterface({ previousButtonClick, playPauseButtonClick, isPlaying, 
     return (
         <div>
             <PreviousButton onClick={ previousButtonClick }/>
-            <PlayPauseButton onClick={ playPauseButtonClick } isPlaying={ isPlaying }/>
+            <PlayPauseButton onClick={ playPauseButtonClick } isPlaying={ isPlaying } />
             <NextButton onClick={ nextButtonClick }/>
             <ShuffleButton onClick={ shuffleButtonClick }/>
         </div>
