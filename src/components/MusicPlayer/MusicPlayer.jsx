@@ -3,6 +3,7 @@ import MediaInterface from './musicPlayerComponents/MediaInterface/MediaInterfac
 import SongQueue from './musicPlayerComponents/SongQueue/SongQueue.jsx';
 import AlbumArt from './musicPlayerComponents/AlbumArt/AlbumArt.jsx';
 import SongSearch from './musicPlayerComponents/SongSearch/SongSearch.jsx';
+import UploadFileModal from './musicPlayerComponents/Modals/UploadFileModal/UploadFileModal.jsx';
 
 import songs from './songs.js';
 
@@ -158,7 +159,19 @@ function MusicPlayer({ createNotification }) {
         <div id='searchBox'>
           <SongSearch data={songs} addSongToQueue={addSongToQueue}/>
         </div>
+<<<<<<< HEAD
       </div>
+=======
+        <div id='searchBoxContainer'>
+        <UploadFileModal />
+          <div id='searchBox'>
+            <ul>
+            <SongSearch data={songs} addSongToQueue={addSongToQueue}/>
+            </ul>
+          </div>
+        </div>
+
+>>>>>>> bf369d5 (upload modal stuff)
     </>
   );
 }
