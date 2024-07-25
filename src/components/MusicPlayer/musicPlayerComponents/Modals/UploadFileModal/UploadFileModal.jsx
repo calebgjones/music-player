@@ -27,9 +27,9 @@ const UploadFileModal = ({ context, handleClose }) => {
     }
 
     return (
-        <div>
+        <>
             <button onClick={handleClose}>Close</button>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} id='uploadBoxForm'>
                 <label htmlFor="file">File</label>
                 <input type="file" name="file" id="file" required />
                 <label htmlFor="title">Title</label>
@@ -42,7 +42,7 @@ const UploadFileModal = ({ context, handleClose }) => {
                 <input type="text" name="genre" id="genre" required />
                 <button type="submit">Upload</button>
             </form>
-        </div>
+        </>
     );
 }
 

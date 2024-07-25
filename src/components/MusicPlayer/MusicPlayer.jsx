@@ -159,19 +159,12 @@ function MusicPlayer({ createNotification }) {
         <div id='searchBox'>
           <SongSearch data={songs} addSongToQueue={addSongToQueue}/>
         </div>
-<<<<<<< HEAD
       </div>
-=======
-        <div id='searchBoxContainer'>
-        <UploadFileModal />
-          <div id='searchBox'>
-            <ul>
-            <SongSearch data={songs} addSongToQueue={addSongToQueue}/>
-            </ul>
-          </div>
+      <div id='uploadBoxContainer'>
+        <div id='uploadBox'>
+          <UploadFileModal />
         </div>
-
->>>>>>> bf369d5 (upload modal stuff)
+      </div>
     </>
   );
 }
