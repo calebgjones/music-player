@@ -1,6 +1,6 @@
 import uploadSong from '../../../../../utils/apiHandling.js';
 
-const UploadFileModal = ({ context, handleClose }) => {
+const UploadFileModal = ({ context }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -24,7 +24,20 @@ const UploadFileModal = ({ context, handleClose }) => {
         const formData = buildFormData(e);
         submitData(formData);
 
+
     }
+    
+    const handleClose = () => {
+        const uploadBoxContainer = document.getElementById('uploadBoxContainer');
+        const uploadBox = document.getElementById('uploadBox');
+        const uploadBoxForm = document.getElementById('uploadBoxForm');
+        console.log('Close button clicked');
+        uploadBoxContainer.style.display =  'none';
+        uploadBoxForm.style.display = 'none';
+        uploadBox.style.display = 'none';
+        console.log('Upload box visibility:', uploadBox.style.display);
+      }
+
 
     return (
         <>

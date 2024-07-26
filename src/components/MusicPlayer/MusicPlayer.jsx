@@ -17,6 +17,7 @@ function MusicPlayer({ createNotification }) {
 
   const [isPlaying, setIsPlaying] = useState(false);
 
+
   const emptySong = {
     songId: '',
     title: '',
@@ -121,6 +122,18 @@ function MusicPlayer({ createNotification }) {
     setCurrentTime(getCurrentTime);
   };
 
+  const handleUploadButtonClick = () => {
+    const uploadBoxContainer = document.getElementById('uploadBoxContainer');
+    const uploadBox = document.getElementById('uploadBox');
+    const uploadBoxForm = document.getElementById('uploadBoxForm');
+    console.log('Upload button clicked');
+    uploadBoxContainer.style.display = 'flex';
+    uploadBoxForm.style.display = 'flex';
+    uploadBox.style.display = 'flex';
+    console.log(uploadBox.style.display);
+  }
+
+
   return (
     <>
       <title>{`Playing: ${currentSong.title}`}</title>
@@ -148,6 +161,7 @@ function MusicPlayer({ createNotification }) {
               isPlaying={isPlaying}
               nextButtonClick={handleNextButtonClick}
               shuffleButtonClick={handleShuffleButtonClick}
+              uploadButtonClick={handleUploadButtonClick}
             />
           </div>
           <div id="songQueueBox">
