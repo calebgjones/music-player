@@ -1,4 +1,4 @@
-import uploadSong from '../../../../../utils/apiHandling.js';
+import api from '../../../../../utils/apiHandling.js';
 
 const UploadFileModal = ({ context }) => {
 
@@ -17,7 +17,7 @@ const UploadFileModal = ({ context }) => {
         }
 
         const submitData = async (formData) => {
-            const response = await uploadSong(formData);
+            const response = await api.uploadSong(formData);
             return response;
         }
         

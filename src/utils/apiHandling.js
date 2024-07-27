@@ -15,7 +15,7 @@ const uploadSong = async (formData) => {
 
         const response = await axios.post('http://localhost:8443/song', formData, {
             headers: {
-            'Content-Type': 'multipart/form-data'
+                'Content-Type': 'multipart/form-data'
             }
         });
         console.log(response.status === 200 ? `Song uploaded successfully` : 'Song upload failed');
@@ -25,4 +25,20 @@ const uploadSong = async (formData) => {
 
 }
 
-export default uploadSong
+const listSongs = async (searchTerm) => {
+    try {
+        console.log('Searching for songs');
+        const response = await axios.get(`http://localhost:8443/songs`);
+        return response.data;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+const api = {
+    uploadSong,
+    listSongs,
+    getSong
+}
+
+export default api

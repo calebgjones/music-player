@@ -150,7 +150,7 @@ function MusicPlayer({ createNotification }) {
               type="range"
               value={getCurrentTime}
               min={0}
-              max={audioDuration}
+              //max={audioDuration}
               onChange={handleProgressBarChange}
             />
 
