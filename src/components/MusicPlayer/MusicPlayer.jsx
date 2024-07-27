@@ -25,7 +25,6 @@ function MusicPlayer({ createNotification }) {
   // SONG QUEUE MANAGEMENT COMMANDS
   const addSongToQueue = async (song) => {
     let newSong = { ...song, listkey: generateListKey() };
-
     setQueuedSongs(prevQueue => [...prevQueue, newSong]);
   };
 

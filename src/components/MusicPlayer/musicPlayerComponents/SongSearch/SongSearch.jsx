@@ -7,8 +7,6 @@ function SongSearch({ addSongToQueue }) {
   const [songList, setSongList] = useState([]);
   const [rawSongList, setRawSongList] = useState([]);
 
-
-
   const genSongList = (songData) => {
     return songData.map((song) => {
       return (
@@ -17,6 +15,7 @@ function SongSearch({ addSongToQueue }) {
             {song.artist} - {song.title}
           </a>
           <button id="songListItems-addItem" onClick={() => { addSongToQueue(song) }}>
+
             <i className="fa-solid fa-plus"></i>
           </button>
         </li>
