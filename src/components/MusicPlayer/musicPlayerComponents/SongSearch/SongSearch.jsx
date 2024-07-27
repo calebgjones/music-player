@@ -7,8 +7,6 @@ function SongSearch({ addSongToQueue }) {
   const [songList, setSongList] = useState([]);
   const [rawSongList, setRawSongList] = useState([]);
 
-
-
   const genSongList = (songData) => {
     return songData.map((song) => {
       return (
