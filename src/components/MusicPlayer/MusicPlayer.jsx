@@ -24,8 +24,9 @@ function MusicPlayer({ createNotification }) {
 
   // SONG QUEUE MANAGEMENT COMMANDS
   const addSongToQueue = async (song) => {
-    setQueuedSongs(prevQueue => [...prevQueue, song]);
-    console.log(queuedSongs);
+    let newSong = { ...song, listkey: generateListKey() };
+
+    setQueuedSongs(prevQueue => [...prevQueue, newSong]);
   };
 
   const removeSongFromQueue = (song) => {
@@ -39,7 +40,7 @@ function MusicPlayer({ createNotification }) {
 
   // MEDIA PLAYER BUTTON EVENT HANDLERS
   const handleNextButtonClick = async () => {
-    if (queuedSongs[1] === undefined || queuedSongs[1].title === 'No Song Playing') {
+    if (queuedSongs[0] === undefined || queuedSongs[0].title === 'No Song Playing') {
       setCurrentSong(emptySong);
       queuedSongs.pop(0);
       console.log('End of queue');

@@ -7,20 +7,16 @@ function SongSearch({ addSongToQueue }) {
   const [songList, setSongList] = useState([]);
   const [rawSongList, setRawSongList] = useState([]);
 
-  const onSongClick = (song) => {
-    let newSong = { ...song, listkey: Math.floor(Math.random() * 100000000) };
-    addSongToQueue(newSong);
-    filterSongs();
-  };
+
 
   const genSongList = (songData) => {
     return songData.map((song) => {
       return (
         <li id="songListItems" key={`${song.id}-${song.listkey}`}>
-          <a href='#' /** onClick={ () => { onSongClick(song) } } */>
+          <a href='#' onClick={() => { addSongToQueue(song) }} >
             {song.artist} - {song.title}
           </a>
-          <button id="songListItems-addItem" onClick={ () => { onSongClick(song) } }>
+          <button id="songListItems-addItem" onClick={() => { addSongToQueue(song) }}>
             <i className="fa-solid fa-plus"></i>
           </button>
         </li>
@@ -52,7 +48,6 @@ function SongSearch({ addSongToQueue }) {
 
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
-    filterSongs();
   };
 
   useEffect(() => {
@@ -66,14 +61,17 @@ function SongSearch({ addSongToQueue }) {
     console.log("Initial Search List Load")
   }, []);
 
-  // re-render song list when search term changes
-  useEffect(() => {
-      filterSongs();
-  }, [rawSongList]);
-
   return (
     <>
       <input id='songSearch' type='text' placeholder='Search for a song / genre / album' value={searchTerm} onChange={handleSearchChange} />
+
+      {
+        // re-render song list when search term changes
+        useEffect(() => {
+          filterSongs();
+        }, [rawSongList, searchTerm])
+      }
+
       <div id='SongSearchList'>
         {songList}
       </div>
