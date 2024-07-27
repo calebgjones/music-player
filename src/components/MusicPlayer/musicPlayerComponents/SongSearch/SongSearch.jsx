@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import setNowPlaying from '../MediaInterface/MediaInterface';
 import './SongSearch.css';
 import api from '../../../../utils/apiHandling';
 
@@ -8,25 +7,25 @@ function SongSearch({ addSongToQueue }) {
   const [songList, setSongList] = useState([]);
   const [rawSongList, setRawSongList] = useState([]);
 
-  const genSongList = (songData) => {
-    const onAddSong = (song) => {
-      addSongToQueue(song);
-    }
-    
-    const onTitleClick = (song) => {
-      setNowPlaying(song);
-    }
+  const onSongClick = (song) => {
+    let newSong = { ...song, listkey: Math.floor(Math.random() * 100000000) };
+    addSongToQueue(newSong);
+    filterSongs();
+  };
 
-    return songData.map((song, index) => (
-      <li id="songListItems" key={index} >
-        <a href='#' onClick={() => { onTitleClick(song) }}>
-          {song.artist} - {song.title}
-        </a>
-        <button id="songListItems-addItem" onClick={() => { onAddSong(song) }}>
-          <i className="fa-solid fa-plus"></i>
-        </button>
-      </li>
-    ));
+  const genSongList = (songData) => {
+    return songData.map((song) => {
+      return (
+        <li id="songListItems" key={`${song.id}-${song.listkey}`}>
+          <a href='#' /** onClick={ () => { onSongClick(song) } } */>
+            {song.artist} - {song.title}
+          </a>
+          <button id="songListItems-addItem" onClick={ () => { onSongClick(song) } }>
+            <i className="fa-solid fa-plus"></i>
+          </button>
+        </li>
+      );
+    });
   };
 
   const filterSongs = () => {
@@ -53,23 +52,24 @@ function SongSearch({ addSongToQueue }) {
 
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
+    filterSongs();
   };
 
   useEffect(() => {
     const getSongList = async () => {
       const songs = await api.listSongs();
       setRawSongList(songs);
-      setSongList(genSongList(songs));
+      filterSongs();
     };
 
     getSongList();
+    console.log("Initial Search List Load")
   }, []);
 
+  // re-render song list when search term changes
   useEffect(() => {
-    if (songList.length > 0) {
       filterSongs();
-    }
-  }, [searchTerm, songList]);
+  }, [rawSongList]);
 
   return (
     <>

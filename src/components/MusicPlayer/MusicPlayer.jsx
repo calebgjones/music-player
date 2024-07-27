@@ -5,11 +5,11 @@ import AlbumArt from './musicPlayerComponents/AlbumArt/AlbumArt.jsx';
 import SongSearch from './musicPlayerComponents/SongSearch/SongSearch.jsx';
 import UploadFileModal from './musicPlayerComponents/Modals/UploadFileModal/UploadFileModal.jsx';
 
-import songs from './songs.js';
-
 function MusicPlayer({ createNotification }) {
 
-  const [currentSong, setCurrentSong] = useState(songs[0]);
+  const emptySong = { songId: '', title: '', artist: '', album: '', genre: '' };
+
+  const [currentSong, setCurrentSong] = useState(emptySong);
   const [queuedSongs, setQueuedSongs] = useState([]);
   const [songHistory, setSongHistory] = useState([]);
   const [getCurrentTime, setCurrentTime] = useState(0);
@@ -17,20 +17,27 @@ function MusicPlayer({ createNotification }) {
 
   const [isPlaying, setIsPlaying] = useState(false);
 
+  const generateListKey = () => { 
+    return Math.floor(Math.random() * 100000000);
+  }
 
-  const emptySong = {
-    songId: '',
-    title: '',
-    artist: '',
-    album: '',
-    genre: ''
+
+  // SONG QUEUE MANAGEMENT COMMANDS
+  const addSongToQueue = async (song) => {
+    setQueuedSongs(prevQueue => [...prevQueue, song]);
+    console.log(queuedSongs);
   };
 
-
-  const addSongToQueue = (song) => {
-    setQueuedSongs([...queuedSongs, song]);
+  const removeSongFromQueue = (song) => {
+    const newQueue = queuedSongs.filter((queuedSong) => queuedSong.listkey !== song.listkey);
+    setQueuedSongs(newQueue);
   };
 
+  const onQueuedSongClick = (song) => {
+    setNowPlaying(song);
+  }
+
+  // MEDIA PLAYER BUTTON EVENT HANDLERS
   const handleNextButtonClick = async () => {
     if (queuedSongs[1] === undefined || queuedSongs[1].title === 'No Song Playing') {
       setCurrentSong(emptySong);
@@ -62,19 +69,7 @@ function MusicPlayer({ createNotification }) {
     console.log('Song history After Previous Button Click:', songHistory);
 
   }
-
-  const setNowPlaying = (song) => {
-    if (song === undefined || song.title === 'No Song Playing') {
-      console.log('wtf');
-      return;
-    } else {
-      setSongHistory([...songHistory, currentSong]);
-      queuedSongs.slice(indexOfCurrentSong, 0);
-      setCurrentSong(song);
-      createNotification(`Now playing: ${song.title}`, 'info');
-    }
-  };
-
+  
   const handlePlayPauseButtonClick = () => {
     const audioElement = document.getElementById('audioElement');
     if (audioElement.paused) {
@@ -110,14 +105,7 @@ function MusicPlayer({ createNotification }) {
     console.log(duration)
     return duration;
   }
-
-  const handleProgressBarChange = (event) => {
-    const currentTime = event.target.value;
-    const audioElement = document.getElementById('audioElement');
-    audioElement.currentTime = currentTime;
-    setCurrentTime(getCurrentTime);
-  };
-
+  
   const handleUploadButtonClick = () => {
     const uploadBoxContainer = document.getElementById('uploadBoxContainer');
     const uploadBox = document.getElementById('uploadBox');
@@ -128,6 +116,28 @@ function MusicPlayer({ createNotification }) {
     uploadBox.style.display = 'flex';
     console.log(uploadBox.style.display);
   }
+
+
+
+  // MEDIA EVENTS
+  const setNowPlaying = (song) => {
+    if (song === undefined || song.title === 'No Song Playing') {
+      console.log('wtf');
+      return;
+    } else {
+      setSongHistory([...songHistory, currentSong]);
+      queuedSongs.slice(indexOfCurrentSong, 0);
+      setCurrentSong(song);
+      createNotification(`Now playing: ${song.title}`, 'info');
+    }
+  };
+
+  const handleProgressBarChange = (event) => {
+    const currentTime = event.target.value;
+    const audioElement = document.getElementById('audioElement');
+    audioElement.currentTime = currentTime;
+    setCurrentTime(getCurrentTime);
+  };
 
 
   return (
@@ -161,13 +171,13 @@ function MusicPlayer({ createNotification }) {
             />
           </div>
           <div id="songQueueBox">
-            <SongQueue queuedSongs={queuedSongs} setQueuedSongs={setQueuedSongs} setNowPlaying={setNowPlaying} />
+            <SongQueue removeSongFromQueue={removeSongFromQueue} queuedSongs={queuedSongs} onQueuedSongClick={onQueuedSongClick} />
           </div>
         </div>
       </div>
       <div id='searchBoxContainer'>
         <div id='searchBox'>
-          <SongSearch data={songs} addSongToQueue={addSongToQueue} />
+          <SongSearch addSongToQueue={addSongToQueue}/>
         </div>
       </div>
       <div id='uploadBoxContainer'>

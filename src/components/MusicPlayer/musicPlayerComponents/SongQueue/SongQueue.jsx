@@ -1,28 +1,29 @@
+import { useEffect, useState } from 'react';
 
-function SongQueue({ queuedSongs, setQueuedSongs, setNowPlaying }) {
+function SongQueue({ removeSongFromQueue, queuedSongs, onQueuedSongClick }) {
+  const [queuedSongsList, setQueuedSongsList] = useState([]);
 
-  const onRemove = (song) => {
-    const newQueue = queuedSongs.filter((queuedSong) => queuedSong !== song);
-    setQueuedSongs(newQueue);
-  }
-  const onQueuedSongClick = (song) => {
-    const newQueue = queuedSongs.slice(queuedSongs.indexOf(song));
-    setQueuedSongs(newQueue);
-    setNowPlaying(song);
-  }
+  const renderQueuedSongs = (queuedSongs) => {
+    const renderedSongs = queuedSongs.map((song) => (
+      <li key={song.listkey}>
+        <a onClick={() => { onQueuedSongClick(song) }} >{song.title}</a>
+        <button id="songQueue-removeSong" onClick={() => { removeSongFromQueue(song) }} ><i className="fa-solid fa-trash"></i></button>
+      </li>
+    ));
 
-  const discIcon = <i className="fa-solid fa-compact-disc"></i>;
+    setQueuedSongsList(renderedSongs);
+  };
 
   return (
     <div id='songQueueContainer'>
+      {
+          useEffect(() => {
+            renderQueuedSongs(queuedSongs);
+          }, [queuedSongs])
+      }
       <h2>Song Queue</h2>
       <ul id='songQueue'>
-        {queuedSongs.map((song) => (
-          <li key={song.index}>
-            <a onClick={( ) => { onQueuedSongClick(song) }} >{discIcon} {song.title}</a>
-            <button id="songQueue-removeSong" onClick={() => { onRemove(song) }} ><i className="fa-solid fa-trash"></i></button>
-          </li>
-        ))}
+        {queuedSongsList}
       </ul>
     </div>
   );
