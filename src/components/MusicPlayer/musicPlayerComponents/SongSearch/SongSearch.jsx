@@ -12,10 +12,14 @@ function SongSearch({ addSongToQueue }) {
     const onAddSong = (song) => {
       addSongToQueue(song);
     }
+    
+    const onTitleClick = (song) => {
+      setNowPlaying(song);
+    }
 
     return songData.map((song, index) => (
       <li id="songListItems" key={index} >
-        <a href='#' onClick={() => { setNowPlaying(song) }}>
+        <a href='#' onClick={() => { onTitleClick(song) }}>
           {song.artist} - {song.title}
         </a>
         <button id="songListItems-addItem" onClick={() => { onAddSong(song) }}>
