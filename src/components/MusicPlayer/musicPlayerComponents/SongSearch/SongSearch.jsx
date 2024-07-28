@@ -50,13 +50,16 @@ function SongSearch({ addSongToQueue }) {
 
   useEffect(() => {
     const getSongList = async () => {
-      const songs = await api.listSongs();
-      setRawSongList(songs);
-      filterSongs();
+      try {
+        const songs = await api.listSongs();
+        setRawSongList(songs);
+        filterSongs();
+        console.log("Initial Search List Load")
+      } catch (error) {
+        console.error("Error loading song list:", error);
+      }
     };
-
     getSongList();
-    console.log("Initial Search List Load")
   }, []);
 
   return (
@@ -66,7 +69,11 @@ function SongSearch({ addSongToQueue }) {
       {
         // re-render song list when search term changes
         useEffect(() => {
-          filterSongs();
+          try {
+            filterSongs();
+          } catch (error) {
+            console.error("Error filtering song list:", error);
+          }
         }, [rawSongList, searchTerm])
       }
 
