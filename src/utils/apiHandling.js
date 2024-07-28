@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const getSong = async (songId) => {
     try {
-        const response = await axios.get(`http://184.169.234.167:8443/song/${songId}`);
+        const response = await axios.get(`https://api.trevorlichfield.com/song/${songId}`);
         return response.data;
     } catch (error) {
         console.error(error);
@@ -13,7 +13,7 @@ const uploadSong = async (formData) => {
     try {
         const song = formData
 
-        const response = await axios.post('http://184.169.234.167:8443/song', formData, {
+        const response = await axios.post('https://api.trevorlichfield.com/song', formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
@@ -28,7 +28,7 @@ const uploadSong = async (formData) => {
 const listSongs = async (searchTerm) => {
     try {
         console.log('Searching for songs');
-        const response = await axios.get(`http://184.169.234.167:8443/songs`);
+        const response = await axios.get(`https://api.trevorlichfield.com/songs`);
         return response.data;
     } catch (error) {
         console.error(error);
