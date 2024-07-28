@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import './SongSearch.css';
 import api from '../../../../utils/apiHandling';
+import Notification, { notify } from '../../../Notifications';
 
 function SongSearch({ addSongToQueue }) {
   const [searchTerm, setSearchTerm] = useState("");
@@ -73,6 +74,7 @@ function SongSearch({ addSongToQueue }) {
             filterSongs();
           } catch (error) {
             console.error("Error filtering song list:", error);
+            notify("Error filtering song list", "error");
           }
         }, [rawSongList, searchTerm])
       }

@@ -9,8 +9,8 @@
 #songSearch {
     border-radius: 5px;
     border: 1.2px solid black;
-    margin: .5em 0 .5em 0;
-    text-align: center;
+    margin: auto;
+    text-align: center
 }
 
 #songListItems {
