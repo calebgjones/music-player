@@ -17,15 +17,16 @@ function MusicPlayer({ createNotification }) {
 
   const [isPlaying, setIsPlaying] = useState(false);
 
-  const generateListKey = () => { 
-    return Math.floor(Math.random() * 100000000);
-  }
-
-
+  
+  
   // SONG QUEUE MANAGEMENT COMMANDS
   const addSongToQueue = async (song) => {
-    let newSong = { ...song, listkey: generateListKey() };
+    
+    const generateListKey = () => { 
+      return Math.floor(Math.random() * 100000000);
+    }
 
+    let newSong = { ...song, listkey: generateListKey() };
     setQueuedSongs(prevQueue => [...prevQueue, newSong]);
   };
 
@@ -36,7 +37,7 @@ function MusicPlayer({ createNotification }) {
 
   const onQueuedSongClick = (song) => {
     setNowPlaying(song);
-  }
+  };
 
   // MEDIA PLAYER BUTTON EVENT HANDLERS
   const handleNextButtonClick = async () => {
@@ -48,10 +49,7 @@ function MusicPlayer({ createNotification }) {
     }
     const updatedQueue = queuedSongs.slice(1);    // Remove the first song from the queue
     setNowPlaying(updatedQueue[0]);   // Update the currentSong state with the next song
-
     setQueuedSongs(updatedQueue); // Update the queuedSongs state with the updated queue
-
-    console.log('Song history After Next Button Click:', queuedSongs[1]);
   };
 
   const handlePreviousButtonClick = () => {
